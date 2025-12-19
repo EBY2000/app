@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main' ,url: 'https://github.com/EBY2000/app.git'
-                git
+
 
             }
         }
