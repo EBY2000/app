@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/EBY2000/app.git'
+                git branch: main ,url: 'https://github.com/EBY2000/app.git'
+                git
+
             }
         }
 
