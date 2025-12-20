@@ -5,6 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/EBY2000/app.git', branch: 'main'
+                pip install pytest
             }
         }
 
