@@ -5,15 +5,16 @@ pipeline {
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/EBY2000/app.git', branch: 'main'
-
             }
         }
 
-
-        stage('Run Test') {
+        stage('Run Tests') {
             steps {
                 script {
-                    sh 'pytest test_app.py'
+                    // Собираем образ с тестами
+                    sh 'docker build -t my-app-test .'
+                    // Запускаем pytest внутри контейнера
+                    sh 'docker run --rm my-app-test pytest test_app.py'
                 }
             }
         }
@@ -41,15 +42,6 @@ pipeline {
                     sh 'docker rm test-app || true'
                 }
             }
-        }
-    }
-
-    post {
-        success {
-            echo "Build succeeded 🎉"
-        }
-        failure {
-            echo "Build failed ❌"
         }
     }
 }
