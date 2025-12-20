@@ -2,11 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout 1') {
+        stage('Checkout') {
             steps {
-                git branch: 'main' ,url: 'https://github.com/EBY2000/app.git'
+                git url: 'https://github.com/YOUR_USERNAME/my-app.git', branch: 'main'
+            }
+        }
 
-
+        stage('Run Tests') {
+            steps {
+                script {
+                    sh 'pytest test_app.py'
+                }
             }
         }
 
@@ -21,7 +27,7 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    sh 'docker run -d --name test-app -p 8081:8081 my-app:latest'
+                    sh 'docker run -d --name test-app -p 8080:8080 my-app:latest'
                 }
             }
         }
@@ -33,6 +39,15 @@ pipeline {
                     sh 'docker rm test-app || true'
                 }
             }
+        }
+    }
+
+    post {
+        success {
+            echo "Build succeeded 🎉"
+        }
+        failure {
+            echo "Build failed ❌"
         }
     }
 }
