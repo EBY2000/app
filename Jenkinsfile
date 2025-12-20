@@ -9,7 +9,8 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+
+        stage('Run Test') {
             steps {
                 script {
                     sh 'pytest test_app.py'
