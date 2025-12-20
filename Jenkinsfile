@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Checkout 1') {
             steps {
                 git branch: 'main' ,url: 'https://github.com/EBY2000/app.git'
 
