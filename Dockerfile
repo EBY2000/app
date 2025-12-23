@@ -24,7 +24,7 @@ RUN chown -R appuser:appuser /app
 
 USER appuser
 
-EXPOSE 8080
+EXPOSE 8081
 
 # healthcheck (предполагаем, что в app.py есть /health)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
