@@ -28,7 +28,6 @@ EXPOSE 8080
 
 # healthcheck (предполагаем, что в app.py есть /health)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
-  HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
   CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8081/health')" || exit 1
 
 
