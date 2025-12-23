@@ -1,0 +1,9 @@
+.git
+__pycache__/
+*.pyc
+.env
+tests/
+venv/
+node_modules/
+Dockerfile
+Jenkinsfile
