@@ -12,9 +12,9 @@ pipeline {
             steps {
                 script {
                     // Собираем образ с тестами
-                    sh 'docker build --target test -t my-app-test .'
+                    sh 'docker build --target test -t my-app-test:1 .'
                     // Запускаем pytest внутри контейнера
-                    sh 'docker run --rm my-app-test'
+                    sh 'docker run --rm my-app-test:1'
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         stage('Build Docker Image!') {
             steps {
                 script {
-                    sh 'docker build -t my-app:latest .'
+                    sh 'docker build -t my-app:v.01 .'
                 }
             }
         }
@@ -30,7 +30,7 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    sh 'docker run -d --name test-app -p 8081:8081 my-app:latest'
+                    sh 'docker run -d --name test-app -p 8081:8081 my-app:v.01'
                 }
             }
         }
