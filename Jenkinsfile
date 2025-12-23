@@ -12,9 +12,9 @@ pipeline {
             steps {
                 script {
                     // Собираем образ с тестами
-                    sh 'docker build -t my-app-test .'
+                    sh 'docker build --target test -t my-app-test .'
                     // Запускаем pytest внутри контейнера
-                    sh 'docker run --rm my-app-test pytest test_app.py'
+                    sh 'docker run --rm my-app-test'
                 }
             }
         }
